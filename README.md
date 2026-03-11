@@ -98,4 +98,4 @@ $\neg{Q}$ . Асинхронный RS-триггер (SR-latch) функцион
 
 ![Рисунок 1.11 – Синхронный RS-триггер со статическим управлением](https://github.com/kondashkens/latch/blob/main/sin_rs-trigger.png)
 
-![Рисунок 1.13 – Временны́е диаграммы]()
+![Рисунок 1.13 – Временны́е диаграммы](https://github.com/kondashkens/latch/blob/main/time_diagram_sin_rs.png)
