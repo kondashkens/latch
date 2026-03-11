@@ -101,5 +101,5 @@ $\neg{Q}$ . Асинхронный RS-триггер (SR-latch) функцион
 ![Рисунок 1.13 – Временны́е диаграммы](https://github.com/kondashkens/latch/blob/main/time_diagram_sin_rs.png)
 
 ## Код VHDL
-![Код VHDL]()
+![Код VHDL](https://github.com/kondashkens/latch/blob/main/vhdl_sr-latch.gif)
 
