@@ -100,8 +100,25 @@ $\neg{Q}$ . Асинхронный RS-триггер (SR-latch) функцион
 
 ![Рисунок 1.13 – Временны́е диаграммы](https://github.com/kondashkens/latch/blob/main/time_diagram_sin_rs.png)
 
-## Код VHDL
-![Код VHDL](https://github.com/kondashkens/latch/blob/main/vhdl_sr-latch.gif)
+## SR-триггер, состоящий из двух логических элементов «И-НЕ». Код VHDL
+```
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity sr_latch is
+    port (
+        s   : in    std_logic;
+        r   : in    std_logic;
+        q   : inout std_logic;
+        q_n : inout std_logic);
+end sr_latch;
+
+architecture behavioral of sr_latch is
+begin
+    q   <= r nand q_n;
+    q_n <= s nand q;
+end behavioral;
+```
 
 ## Код Verilog
 ```
