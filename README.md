@@ -103,3 +103,25 @@ $\neg{Q}$ . Асинхронный RS-триггер (SR-latch) функцион
 ## Код VHDL
 ![Код VHDL](https://github.com/kondashkens/latch/blob/main/vhdl_sr-latch.gif)
 
+## Код Verilog
+```
+module sr_latch (
+    input S,
+    input R,
+    output reg Q,
+    output wire Qn
+);
+
+    // Логика SR-защелки
+    always @(S or R) begin
+        if (R)
+            Q <= 1'b0;      // Сброс (Reset)
+        else if (S)
+            Q <= 1'b1;      // Установка (Set)
+        // Если S=0 и R=0, Q сохраняет прежнее состояние (no change)
+    end
+
+    assign Qn = ~Q; // Инверсный выход
+
+endmodule
+```
