@@ -120,25 +120,40 @@ begin
 end behavioral;
 ```
 
-## Код Verilog
+## Базовая защелка SR. Код VHDL
 ```
+ entity SR_Latch is  
+  Port ( S,R : in STD_LOGIC;  
+         Q : inout STD_LOGIC;  
+         Q_n : inout STD_LOGIC);  
+ end SR_Latch;  
+   
+ architecture SR_Latch_arch of SR_Latch is  
+ begin  
+ process (S,R,Q,Q_n)  
+       begin  
+             Q <= R NOR Q_n;  
+             Q_n <= S NOR Q;  
+       end process;  
+   
+ end SR_Latch_arch;
+```
+## SR-триггер NOR latch. Код на SystemVerilog
+```
+`ifndef LIBSV_LATCHES_SR_LATCH
+`define LIBSV_LATCHES_SR_LATCH
+
 module sr_latch (
-    input S,
-    input R,
-    output reg Q,
-    output wire Qn
+    input  logic                                     s,
+    input  logic                                     r,
+    output logic  /* verilator lint_off UNOPTFLAT */ q  /* verilator lint_on UNOPTFLAT */,
+    output logic                                     q_n
 );
 
-    // Логика SR-защелки
-    always @(S or R) begin
-        if (R)
-            Q <= 1'b0;      // Сброс (Reset)
-        else if (S)
-            Q <= 1'b1;      // Установка (Set)
-        // Если S=0 и R=0, Q сохраняет прежнее состояние (no change)
-    end
-
-    assign Qn = ~Q; // Инверсный выход
+    assign q   = ~(r | q_n);
+    assign q_n = ~(s | q);
 
 endmodule
+
+`endif  /* LIBSV_LATCHES_SR_LATCH */
 ```
